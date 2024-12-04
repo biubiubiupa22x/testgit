@@ -48,4 +48,39 @@ Remote：远程仓库
 要回退到前100个版本：git reset --hard HEAD~100 
 回退至指定版本：git reset --hard 版本号
 当版本号未知时：git reflog产看版本号，查看后再回退
+![](image-9.png)
+![alt text](image-10.png)
+修改文件后，使用git提交文件的步骤提交到版本库
+
+**3、Git撤销修改和删除文件操作**
+（1）撤销修改
+方法：
+法一：直接手动更改去掉那些需要的文件，然后add添加到暂存区，最后commit
+法二：按以前的方法直接恢复到上一个版本，使用 git reset --hard HEAD^
+法三：直接用撤销命令：git checkout -- file:可以丢弃工作区的修改
+
+checkout的两种情况：
+①readme.txt自动修改后，还没有放到暂存区，使用撤销修改就回到和版本库一模一样的状态
+②readme.txt已经放入暂存区了，接着又作了修改，撤销修改就回到添加暂存区后的状态
+![alt text](image-11.png)
+*注意：命令git checkout -- readme.txt 中的 -- 很重要，如果没有 -- 的话，那么命令变成创建分支了*
+
+（2）删除文件
+![](image-12.png)
+
+**5、远程仓库**
+第一步：创建SSH Key
+![alt text](image-13.png)
+第二步：将已创建的密匙添加到github(已完成注册)
+第三步：添加远程仓库
+完成后可实现本地仓库和Git仓库远程同步，同时便于与他人协作修改
+Create a new repo（仓库名：testgit）->Create repository
+根据GitHub的提示，在本地的testgit仓库下运行命令：
+![alt text](image-14.png)
+![alt text](image-15.png)
+推送成功后，github页面远程库的内容和本地一样
+
+从此，只要本地作了提交，就可以通过如下命令：
+git push origin master
+把本地master分支的最新修改推送到github上，拥有了真正的分布式版本库
 
